@@ -1,6 +1,8 @@
-export const drawCircle = (robot, r) => {
+import robot from 'robotjs';
+
+export const drawCircle = (r: number) => {
     const mousePos = robot.getMousePos();
-    robot.moveMouse(mousePos.x + r, mousePos.y);
+    robot.moveMouseSmooth(mousePos.x + r, mousePos.y);
     robot.mouseToggle('down');
     for (let i = 0; i <= Math.PI * 2; i += 0.02) {
         const x = mousePos.x + (r * Math.cos(i));
@@ -8,4 +10,5 @@ export const drawCircle = (robot, r) => {
         robot.dragMouse(x, y);
     };
     robot.mouseToggle('up');
+    robot.moveMouseSmooth(mousePos.x, mousePos.y);
 }

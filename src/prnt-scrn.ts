@@ -1,6 +1,7 @@
 import Jimp from 'jimp';
+import robot from 'robotjs';
 
-export const prntScrn = async (robot) => {
+export const prntScrn = async () => {
     const mousePos = robot.getMousePos();
     const size = 200;
     const img = robot.screen.capture(mousePos.x - size / 2, mousePos.y - size / 2, size, size);
@@ -17,7 +18,7 @@ export const prntScrn = async (robot) => {
         "height": img.height
     });
 
-    const imgBase64 = await jImg.getBase64Async(Jimp.AUTO);
+    const imgBase64 = await jImg.getBase64Async(Jimp.MIME_PNG);
     const imgString = `prnt_scrn ${imgBase64.substring(22)}`;
     return imgString
 }

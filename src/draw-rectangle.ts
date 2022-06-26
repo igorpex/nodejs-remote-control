@@ -1,4 +1,6 @@
-export const drawRectangle = (robot, sideX, sideY) => {
+import robot from 'robotjs';
+
+export const drawRectangle = (sideX: number, sideY: number) => {
     const mousePos = robot.getMousePos();
     let start = { x: mousePos.x - sideX / 2, y: mousePos.y - sideY / 2 };
     robot.moveMouseSmooth(start.x, start.y);
