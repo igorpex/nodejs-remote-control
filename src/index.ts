@@ -80,6 +80,19 @@ async function onMessage(message: Buffer) {
 
 server.on('connection', onConection);
 
+function handleExit() {
+    server.clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.close();
+        }
+    })
+    console.log('Websockets closed. Exit.');
+    process.exit(0);
+}
+
+process.on('SIGINT', () => handleExit());  // CTRL+C
+process.stdin.on('end', () => handleExit());
+
 export {
     httpServer, server, onConection, onMessage
 }
