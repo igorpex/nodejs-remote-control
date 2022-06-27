@@ -1,5 +1,5 @@
-# RSSchool NodeJS websocket task template
-> Static http server and base task packages.
+# NodeJS websocket backend for remote control using RobotJS
+> Static http server connects to backend with WebSocket.
 
 ## Installation
 1. Clone/download repo
@@ -10,13 +10,20 @@
 
 `npm run start:dev`
 
-* App served @ `http://localhost:8181` with nodemon
+* Backend served @ `http://localhost:8080` with nodemon
+* Frontend served @ `http://localhost:3000` (static files)
 
 **Production**
 
-`npm run start`
+`npm run start:prod`
 
-* App served @ `http://localhost:8181` without nodemon
+* Backend build and then served @ `http://localhost:8080` without nodemon
+* Frontend served @ `http://localhost:3000`
+
+`npm run build`
+
+* App just build to 'dist' folder
+
 
 ---
 
@@ -24,7 +31,8 @@
 
 Command | Description
 --- | ---
-`npm run dev` | App served @ `http://localhost:8181` with nodemon
-`npm run start` | App served @ `http://localhost:8181` without nodemon
+`npm run start:dev` | Backend served @ `http://localhost:8080` with nodemon
+`npm run start:prod` | Backend served @ `http://localhost:8080` without nodemon
+Frontend served @ `http://localhost:3000`
 
 **Note**: replace `npm` with `yarn` in `package.json` if you use yarn.
