@@ -1,14 +1,19 @@
-import robot from 'robotjs';
+import { left, mouse, right, Point, straightTo } from "@nut-tree/nut-js";
 
-export const drawCircle = (r: number) => {
-    const mousePos = robot.getMousePos();
-    robot.moveMouseSmooth(mousePos.x + r, mousePos.y);
-    robot.mouseToggle('down');
-    for (let i = 0; i <= Math.PI * 2; i += 0.02) {
+export async function drawCircle(r: number) {
+    const mousePos = await mouse.getPosition();
+    await mouse.move(right(r));
+    const defMouseSpeed = mouse.config.mouseSpeed;
+    const defDelay = mouse.config.autoDelayMs;
+    mouse.config.mouseSpeed = 5000;
+    mouse.config.autoDelayMs = 10;
+    for (let i = 0; i <= Math.PI * 2; i += 0.04) {
         const x = mousePos.x + (r * Math.cos(i));
         const y = mousePos.y + (r * Math.sin(i));
-        robot.dragMouse(x, y);
+        const target = new Point(x, y)
+        await mouse.drag(straightTo(target));
     };
-    robot.mouseToggle('up');
-    robot.moveMouseSmooth(mousePos.x, mousePos.y);
+    mouse.config.mouseSpeed = defMouseSpeed;
+    mouse.config.autoDelayMs = defDelay;
+    await mouse.move(left(r));
 }

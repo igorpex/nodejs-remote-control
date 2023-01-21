@@ -16,8 +16,8 @@
     "license": "ISC",
     "dependencies": {
         "@types/ws": "^8.5.3",
-        "jimp": "^0.16.1",
-        "robotjs": "^0.6.0",
+        "@nut-tree/nut-js": "^3.0.0",
+        "jimp": "^0.16.2",
         "ts-node": "^10.8.1",
         "ws": "^8.8.0"
     },

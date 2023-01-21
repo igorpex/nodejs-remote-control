@@ -1,12 +1,13 @@
 import Jimp from 'jimp';
-import robot from 'robotjs';
+import { mouse, Region, screen } from "@nut-tree/nut-js";
 
 export const prntScrn = async () => {
-    const mousePos = robot.getMousePos();
+    const mousePos = await mouse.getPosition();
     const size = 200;
-    const img = robot.screen.capture(mousePos.x - size / 2, mousePos.y - size / 2, size, size);
+    const region = new Region(mousePos.x - size / 2, mousePos.y - size / 2, size, size);
+    const img = await screen.grabRegion(region);
     const data = [];
-    const bitmap = img.image;
+    const bitmap = img.data;
     let i = 0, l = bitmap.length;
     for (i = 0; i < l; i += 4) {
         data.push(bitmap[i + 2], bitmap[i + 1], bitmap[i], bitmap[i + 3]);
